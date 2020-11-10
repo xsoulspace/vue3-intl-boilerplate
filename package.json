@@ -7,7 +7,12 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "versionUpDevelop": "npm --no-git-tag-version version minor",
+    "versionUpFeature": "npm --no-git-tag-version version prerelease",
+    "versionUpHotFix": "npm --no-git-tag-version version patch",
+    "versionUpPreRelease": "npm --no-git-tag-version version prerelease",
+    "versionUpReleaseMaster": "npm --no-git-tag-version version major"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -15,9 +20,12 @@
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.0-0",
+    "vue-swatches": "^2.1.0",
+    "vue-tour": "^1.5.0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@types/office-js": "^1.0.146",
     "@types/jest": "^24.0.19",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
