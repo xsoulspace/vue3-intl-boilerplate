@@ -1,5 +1,5 @@
 @use '../library/colours';
-@use '../Stateless/buttons';
+@use 'buttons';
 
 .vue-swatches {
   &:focus {
