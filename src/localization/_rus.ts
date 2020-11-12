@@ -1,5 +1,3 @@
-import { LangFile } from './Languages'
-
 export const rus: LangFile = {
   introTour: {
     'header-help': {

@@ -1,3 +1,5 @@
+/// <reference types="@types/office-js" />
+
 import '@/uiStyle/style.scss'
 import { createApp } from 'vue'
 import App from './App.vue'

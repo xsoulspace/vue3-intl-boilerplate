@@ -1,6 +1,5 @@
-import { Maybe } from '@/entities/Maybe'
+import { deepCopyObj } from '@/functions/deepCopyObj'
 import { inject, provide, Ref, ref } from 'vue'
-import { Languages } from './Languages'
 import { eng } from './_eng'
 import { rus } from './_rus'
 
@@ -20,7 +19,41 @@ export class MainLocalization {
   }
   // TODO: add enum and solve problem with value by key extraction
   static $t(key: string) {
-    return LangMessages[this.locale][key]
+    const keysArr = key.includes('.') ? key.split('.') : [key]
+    const langFile = LangMessages[this.locale]
+    const strValue: string = (() => {
+      try {
+        let tempObj: LocaleMessageInterface | LangFile = deepCopyObj(langFile)
+        for (let i = 0; i < keysArr.length; i++) {
+          const levelKey = keysArr[i]
+          if (!(levelKey in tempObj))
+            throw Error(
+              `no key ${levelKey} found in tempObj for ${this.locale} locale!`
+            )
+          const valueOrObject: Maybe<
+            LocaleMessageInterface | string
+          > = (tempObj as any)[levelKey]
+          switch (typeof valueOrObject) {
+            case 'string':
+              return valueOrObject
+            case 'object':
+              if (valueOrObject != null) {
+                tempObj = valueOrObject
+                break
+              }
+            default:
+              throw Error(
+                `no value found for key ${levelKey} found in langFile for ${this.locale} locale!`
+              )
+          }
+        }
+        return ''
+      } catch (error) {
+        console.error(error)
+        return ''
+      }
+    })()
+    return strValue
   }
   static createProvider({ locale }: { locale: Maybe<Languages> }): void {
     if (locale) this.locale = locale

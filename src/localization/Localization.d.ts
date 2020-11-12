@@ -1,35 +1,16 @@
-import { LocaleMessageObject, LocaleMessage } from 'vue-i18n'
-
-export enum Languages {
-  rus = 'rus',
-  eng = 'eng',
-}
-
-
-
-export interface LocaleMessageInterface {
+declare interface LocaleMessageInterface {
   [prop: string]: LocaleMessageInterface | string
 }
 
-export interface TourLangInterface {
+declare interface TourLangInterface extends LocaleMessageInterface {
   [prop: string]: {
     title: string
     content: string
-    placement?: string
-  }
-}
-export interface TourInterface {
-  target: string
-  header: {
-    title: string
-  }
-  content: string
-  params?: {
-    placement?: string
+    placement?: Maybe<string>
   }
 }
 
-export interface SettingsLangInterface extends LocaleMessageInterface {
+declare interface SettingsLangInterface extends LocaleMessageInterface {
   header: string
   chooseLanguage: string
   darkTheme: string
@@ -41,12 +22,7 @@ export interface SettingsLangInterface extends LocaleMessageInterface {
   chooseColor: string
 }
 
-export interface AlertLangInterface extends LocaleMessageInterface {
-  title: string
-}
-export type AlertsLangInterface = LocaleMessageInterface
-
-export interface LangFile extends LocaleMessageObject {
+declare interface LangFile extends LocaleMessageInterface {
   introTour: TourLangInterface
   settings: SettingsLangInterface
   item: {
