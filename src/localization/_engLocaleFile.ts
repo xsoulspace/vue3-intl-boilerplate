@@ -1,4 +1,4 @@
-export const eng: LangFile = {
+export const engLocaleFile: LocaleFile = {
   introTour: {
     'header-help': {
       title: 'Welcome to Sheet Manager!',

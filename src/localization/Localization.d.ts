@@ -1,9 +1,20 @@
 declare interface LocaleMessageInterface {
   [prop: string]: LocaleMessageInterface | string
 }
+declare enum TourHeaders {
+  'header-help' = 'header-help',
+  'header-sync' = 'header-sync',
+  'header-info' = 'header-info',
+  'header-search' = 'header-search',
+  'header-settings' = 'header-settings',
+  'item-whole' = 'item-whole',
+  'item-color' = 'item-color',
+  'item-name' = 'item-name',
+  'item-numeration' = 'item-numeration',
+}
 
-declare interface TourLangInterface extends LocaleMessageInterface {
-  [prop: string]: {
+declare type TourLangInterface = {
+  [prop in TourHeaders]: {
     title: string
     content: string
     placement?: Maybe<string>
@@ -22,7 +33,9 @@ declare interface SettingsLangInterface extends LocaleMessageInterface {
   chooseColor: string
 }
 
-declare interface LangFile extends LocaleMessageInterface {
+declare type LocaleFiles = { [lang in Languages]: LocaleFile }
+
+declare interface LocaleFile extends LocaleMessageInterface {
   introTour: TourLangInterface
   settings: SettingsLangInterface
   item: {
