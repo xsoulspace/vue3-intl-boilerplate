@@ -1,3 +1,5 @@
+import { LangfullEntity } from './LangfullEntitiy'
+
 declare class Alert {
   constructor(
     public id: number = 0,
