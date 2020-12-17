@@ -1,26 +1,30 @@
 import { Component } from 'vue'
 import { RouteRegistrator } from './RouteRegistrator'
 
-enum FeatureWidgetsEnum {
+enum featureWidgetsEnum {
   SheetWidget = 'SheetWidget',
+  SheetsWidget = 'SheetsWidget',
 }
 
-const FeatureWidgetsFilesObj = {
+const featureWidgetsFilesObj = {
   SheetWidget: {
+    index: 'index',
+  },
+  SheetsWidget: {
     index: 'index',
   },
 }
 
 type FeatureWidgets = {
-  [widget in FeatureWidgetsEnum]: Component
+  [widget in featureWidgetsEnum]: Component
 }
 
-const FEATURE_WIDGETS_FOLDER = 'featureWidgets/'
+const featureWidgetsFolder = 'featureWidgets/'
 const routeRegistrator = new RouteRegistrator<
   FeatureWidgets,
-  typeof FeatureWidgetsEnum
->(FEATURE_WIDGETS_FOLDER, FeatureWidgetsEnum)
+  typeof featureWidgetsEnum
+>(featureWidgetsFolder, featureWidgetsEnum)
 
-export const FeatureWidgets = routeRegistrator.getWidgetsWithinDirectory({
-  requestingFiles: FeatureWidgetsFilesObj,
+export const featureWidgets = routeRegistrator.getWidgetsWithinDirectory({
+  requestingFiles: featureWidgetsFilesObj,
 })
